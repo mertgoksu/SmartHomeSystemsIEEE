@@ -85,7 +85,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
 
     //Lifecycle
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
@@ -95,11 +96,12 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
+
     // Splash Api
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     // Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.7.0")
 
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.49")
