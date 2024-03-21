@@ -16,15 +16,21 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
+    /*primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80*/
+    primary = primaryDarkTheme,
+    secondary = secondaryDarkTheme,
+    tertiary = tertiaryDarkTheme
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+    /*primary = Purple40,
     secondary = PurpleGrey40,
-    tertiary = Pink40
+    tertiary = Pink40*/
+    primary = primaryLightTheme,
+    secondary = secondaryLightTheme,
+    tertiary = tertiaryLightTheme
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -63,7 +69,9 @@ fun SmartHomeSystemsIEEETheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = if(darkTheme)
+                DarkColorScheme else
+                LightColorScheme,
         typography = Typography,
         content = content
     )

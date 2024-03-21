@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961426689024",
+    "project_id": "smarthomesystemsieee",
+    "storage_bucket": "smarthomesystemsieee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961426689024:android:483ac5142847a077dd9ce5",
+        "android_client_info": {
+          "package_name": "com.mertg.smarthomesystemsieee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2fq573TYRVYVEgsLz2HK2j4FEhUaQhYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
