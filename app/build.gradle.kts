@@ -85,7 +85,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
 
     //Lifecycle
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
@@ -108,4 +108,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("androidx.hilt:hilt-work:1.2.0")
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    // Extended Icons
+    implementation("androidx.compose.material:material-icons-extended")
 }
