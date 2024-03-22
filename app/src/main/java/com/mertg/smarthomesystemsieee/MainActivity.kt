@@ -26,10 +26,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mertg.smarthomesystemsieee.ui.theme.SmartHomeSystemsIEEETheme
+import com.mertg.smarthomesystemsieee.view.LoginPage
 import com.mertg.smarthomesystemsieee.view.MainPage
 import com.mertg.smarthomesystemsieee.view.PairPage
 import com.mertg.smarthomesystemsieee.view.SettingsPage
@@ -44,7 +47,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScaffold()
+                    val navController = rememberNavController()
+
+                    NavHost(navController, startDestination = "login_route") {
+                        composable("login_route") {
+                            LoginPage(navController)
+                        }
+                        composable("main_scaffold_route"){
+                            MainScaffold()
+                        }
+                    }
+
                 }
             }
         }
@@ -54,6 +67,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScaffold(){
     var selectedTab by remember { mutableStateOf(0) }
+
     val navController = rememberNavController()
 
     Scaffold(
@@ -82,7 +96,6 @@ fun MainScaffold(){
                         navController.navigate("route_main_page")
                     },
                     icon = {
-                        // İkonunuz için resim kaynağını buraya ekleyin
                         Icon(Icons.Filled.Home, "")
                     },
                     label = {
@@ -129,29 +142,59 @@ fun MainScaffold(){
                 }
                 composable("route_settings_page") {
                     SettingsPage(navController = navController)
+                }//Aşağıdakileri eklememin sebebi Main gidince bu navController'ı alıyor bunlara
+                //gitmek için lazım, yoksa sadece üsttekilere gidebilir.
+                composable("login_route") {
+                    LoginPage(navController)
                 }
-                //Args için kullanabiliriz
-                /*composable(route = "side_page/{user_name}/{password}",arguments = listOf(
-                    navArgument("user_name"){
-                        type = NavType.StringType
-                    },
-                    navArgument("password"){
-                        type = NavType.StringType
-                    }
-
-                )) {
-                    SidePage(navController = navController)
-                }*/
+                composable("main_scaffold_route"){
+                    MainScaffold()
+                }
             }
         }
-
     }
+}
+
+@Composable
+fun NavAdmin() : NavHostController {
+    val navController = rememberNavController()
+
+    NavHost(navController, startDestination = "route_main_page") {
+        composable("route_main_page") {
+            MainPage(navController = navController)
+        }
+        composable("route_pair_page") {
+            PairPage(navController = navController)
+        }
+        composable("route_settings_page") {
+            SettingsPage(navController = navController)
+        }
+        composable("login_route") {
+            LoginPage(navController)
+        }
+        composable("main_scaffold_route") {
+            MainScaffold()
+        }
+        //Args için kullanabiliriz
+        /*composable(route = "side_page/{user_name}/{password}",arguments = listOf(
+            navArgument("user_name"){
+                type = NavType.StringType
+            },
+            navArgument("password"){
+                type = NavType.StringType
+            }
+
+        )) {
+            SidePage(navController = navController)
+        }*/
+    }
+    return navController
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     SmartHomeSystemsIEEETheme {
-        MainScaffold()
+        LoginPage(navController = rememberNavController())
     }
 }
