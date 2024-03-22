@@ -41,6 +41,7 @@ import com.mertg.smarthomesystemsieee.view.DetailPage
 import com.mertg.smarthomesystemsieee.view.LoginPage
 import com.mertg.smarthomesystemsieee.view.MainPage
 import com.mertg.smarthomesystemsieee.view.PairPage
+import com.mertg.smarthomesystemsieee.view.RegisterPage
 import com.mertg.smarthomesystemsieee.view.SettingsPage
 
 class MainActivity : ComponentActivity() {
@@ -61,6 +62,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("main_scaffold_route"){
                             MainScaffold()
+                        }
+                        composable("register_route"){
+                            RegisterPage(navController)
                         }
                     }
 
