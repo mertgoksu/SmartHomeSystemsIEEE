@@ -28,12 +28,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.mertg.smarthomesystemsieee.ui.theme.SmartHomeSystemsIEEETheme
+import com.mertg.smarthomesystemsieee.view.DetailPage
 import com.mertg.smarthomesystemsieee.view.LoginPage
 import com.mertg.smarthomesystemsieee.view.MainPage
 import com.mertg.smarthomesystemsieee.view.PairPage
@@ -91,18 +95,22 @@ fun MainScaffold(){
                 title = { },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
                 navigationIcon = {
-                    *//*IconButton(onClick = { //Gerekirse ekleyeceğiz, geri butonu
+                    IconButton(onClick = { //Gerekirse ekleyeceğiz, geri butonu
                         navController.popBackStack()
                     }) {
                         Icon(imageVector = Icons.Filled.ArrowBackIosNew, contentDescription = "Back")
-                    }*//*
+                    }
                 }
             )
         },*/
+
         bottomBar = {
             NavigationBar(
-                modifier = Modifier.fillMaxWidth(),
-                containerColor = MaterialTheme.colorScheme.tertiary // BottomNavigationBar'ın arka plan rengini ayarlayabilirsiniz.
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 1.dp)
+                    .background(MaterialTheme.colorScheme.primary),
+                containerColor = MaterialTheme.colorScheme.tertiary
             ) {
                 NavigationBarItem(
                     selected = selectedTab == 0,
@@ -165,45 +173,16 @@ fun MainScaffold(){
                 composable("main_scaffold_route"){
                     MainScaffold()
                 }
+                composable("route_detail_page/{item_name}",arguments = listOf(
+                    navArgument("item_name"){
+                        type = NavType.StringType
+                    }
+                )){
+                    DetailPage(navController = navController)
+                }
             }
         }
     }
-}
-
-@Composable
-fun NavAdmin() : NavHostController {
-    val navController = rememberNavController()
-
-    NavHost(navController, startDestination = "route_main_page") {
-        composable("route_main_page") {
-            MainPage(navController = navController)
-        }
-        composable("route_pair_page") {
-            PairPage(navController = navController)
-        }
-        composable("route_settings_page") {
-            SettingsPage(navController = navController)
-        }
-        composable("login_route") {
-            LoginPage(navController)
-        }
-        composable("main_scaffold_route") {
-            MainScaffold()
-        }
-        //Args için kullanabiliriz
-        /*composable(route = "side_page/{user_name}/{password}",arguments = listOf(
-            navArgument("user_name"){
-                type = NavType.StringType
-            },
-            navArgument("password"){
-                type = NavType.StringType
-            }
-
-        )) {
-            SidePage(navController = navController)
-        }*/
-    }
-    return navController
 }
 
 @Preview(showBackground = true)
