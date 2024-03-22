@@ -23,30 +23,21 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mertg.smarthomesystemsieee.MainScaffold
-import com.mertg.smarthomesystemsieee.NavAdmin
+import com.mertg.smarthomesystemsieee.presentation.common.CustomButton
 
 @Composable
 fun LoginPage(navController: NavController) {
-
-
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                ,
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            OutlinedButton(
-                onClick = {
-                    // MainPage(MainScaffold)'u aç
-                    navController.navigate("main_scaffold_route")
-                }
-            ) {
-                Text("Giriş Yap",color = Color.Black)
-            }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            ,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CustomButton(text = "Giriş") {
+            navController.navigate("main_scaffold_route")
         }
-
-
+    }
 }
 
 
