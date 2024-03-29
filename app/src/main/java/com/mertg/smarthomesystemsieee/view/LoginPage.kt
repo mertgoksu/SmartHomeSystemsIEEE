@@ -134,7 +134,7 @@ fun checkCredentials(creds: Credentials, context: Context): Boolean {
         (context as Activity).finish()
         return true
     } else {
-        Toast.makeText(context, "Wrong Credentials", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Yanlış format", Toast.LENGTH_SHORT).show()
         return false
     }
 }
@@ -179,8 +179,8 @@ fun LoginField(
     value: String,
     onChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    label: String = "Login",
-    placeholder: String = "Enter your Login"
+    label: String = "Giriş",
+    placeholder: String = "Kullanıcı Adı Girin"
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -215,8 +215,8 @@ fun PasswordField(
     onChange: (String) -> Unit,
     submit: () -> Unit,
     modifier: Modifier = Modifier,
-    label: String = "Password",
-    placeholder: String = "Enter your Password"
+    label: String = "Şifre",
+    placeholder: String = "Şifrenizi Girin"
 ) {
 
     var isPasswordVisible by remember { mutableStateOf(false) }
