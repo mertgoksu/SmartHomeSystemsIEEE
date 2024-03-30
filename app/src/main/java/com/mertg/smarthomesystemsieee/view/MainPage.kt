@@ -34,11 +34,11 @@ import com.mertg.smarthomesystemsieee.ui.theme.SmartHomeSystemsIEEETheme
 @Composable
 fun MainPage(navController: NavController) {
 
-    val mainDummyItems = listOf("1","2","3","4","5","6","7","8","9","10")
+    val mainDummyItems = listOf("Oturma Odası Lamba","Mutfak Lamba","Yatak Odası Lamba","Buzdolabı Priz","Salon Lamba")
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LazyVerticalGrid(columns = GridCells.Fixed(2)) {
@@ -57,7 +57,7 @@ fun MainPage(navController: NavController) {
                     )
                 ){
                     Column(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize().padding(10.dp),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {

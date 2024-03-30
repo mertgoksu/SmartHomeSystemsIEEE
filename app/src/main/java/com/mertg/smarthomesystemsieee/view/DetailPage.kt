@@ -1,5 +1,6 @@
 package com.mertg.smarthomesystemsieee.view
 
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,11 +11,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
@@ -37,9 +44,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mertg.smarthomesystemsieee.presentation.common.CustomButton
+import com.mertg.smarthomesystemsieee.presentation.common.RegularText
 
 @Composable
-fun DetailPage(navController : NavHostController) {
+fun DetailPage(navController : NavController) {
 
     val item_name = navController.currentBackStackEntry?.arguments?.getString("item_name")
 
@@ -48,6 +56,26 @@ fun DetailPage(navController : NavHostController) {
     var sliderValue by remember {
         mutableStateOf(0f)
     }
+
+    @Composable
+    fun DetailTopAppBar(navController: NavController) {
+        // Üst çubukta geri tuşu
+        IconButton(onClick = { navController.popBackStack() }) {
+            Icon(Icons.Filled.ArrowBackIosNew, "")
+        }
+    }
+
+    Scaffold(
+        topBar = {
+            // Üst çubuk (top app bar)
+            DetailTopAppBar(navController = navController)
+        }
+    ) {
+        Column(Modifier.padding(it)) {
+
+        }
+    }
+
 
     Column(
         modifier = Modifier
@@ -65,8 +93,8 @@ fun DetailPage(navController : NavHostController) {
         ) {
             Card(
                 modifier = Modifier
-                    .width(150.dp)
-                    .height(180.dp)
+                    .width(220.dp)
+                    .height(250.dp)
                     .padding(all = 10.dp)
                     .padding(top = 30.dp),
                 colors = CardDefaults.cardColors(
@@ -75,10 +103,11 @@ fun DetailPage(navController : NavHostController) {
                 )
             ) {
                 Column(
+                    modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally)
                 {
-                    Text(text = item_name!!, fontSize = 31.sp, color = Color.White)
+                    item_name?.let { Text(text = it, fontSize = 31.sp, color = Color.White,textAlign = TextAlign.Center) }
                 }
             }
         }
@@ -90,8 +119,9 @@ fun DetailPage(navController : NavHostController) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Example Eşya",
-                fontSize = 31.sp, color = MaterialTheme.colorScheme.secondary)
+            item_name?.let {
+                RegularText(text = it, fontSize = 31f, color = MaterialTheme.colorScheme.secondary)
+            }
         }
         Row( // parlaklık için slider
             modifier = Modifier
@@ -113,7 +143,7 @@ fun DetailPage(navController : NavHostController) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "${sliderValue.toInt()} %", fontSize = 22.sp)
+                    RegularText(text = "${sliderValue.toInt()} %", fontSize = 22f, color = MaterialTheme.colorScheme.secondary)
                 }
 
                 Row(
@@ -130,7 +160,7 @@ fun DetailPage(navController : NavHostController) {
                         valueRange = 0f..100f,
                         colors = SliderDefaults.colors(
                             activeTrackColor = MaterialTheme.colorScheme.tertiary,
-                            inactiveTrackColor = MaterialTheme.colorScheme.secondaryContainer,
+                            inactiveTrackColor = MaterialTheme.colorScheme.secondary,
                             thumbColor = MaterialTheme.colorScheme.tertiary
                         ))
 
@@ -171,7 +201,7 @@ fun DetailPage(navController : NavHostController) {
                 .padding(30.dp)
         ) {
             CustomButton(text = "Aç / Kapa") {
-                
+
             }
         }
 
