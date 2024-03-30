@@ -24,7 +24,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxColors
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -42,7 +41,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -59,6 +57,7 @@ import com.mertg.smarthomesystemsieee.R
 import com.mertg.smarthomesystemsieee.presentation.common.CustomButton
 import com.mertg.smarthomesystemsieee.presentation.common.RegularText
 import com.mertg.smarthomesystemsieee.ui.theme.SmartHomeSystemsIEEETheme
+import com.mertg.smarthomesystemsieee.util.Screen
 
 @Composable
 fun LoginPage(navController: NavController) {
@@ -114,14 +113,13 @@ fun LoginPage(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             Column {
                 CustomButton(text = "Giriş Yap") {
-                    navController.navigate("main_scaffold_route")
+                    navController.navigate(Screen.MainScaffold.route)
                 }
 
                 TextButton(
-                    onClick = { navController.navigate("register_route") },
+                    onClick = { navController.navigate(Screen.RegisterPage.route) },
                     modifier = Modifier.align(Alignment.CenterHorizontally)) {
                     RegularText(text = "Kayıt Ol", fontSize = 15f, color = MaterialTheme.colorScheme.secondary)
-
                 }
             }
         }
